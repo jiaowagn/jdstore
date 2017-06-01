@@ -2,15 +2,11 @@ class ProductsController < ApplicationController
   before_action :validate_search_key, only: [:search]
 
   def index
-    @products = Product.order("position ASC")
-  end
-
-  def index
     if params[:category].blank?
       @products = Product.all
     else
       @category_id = Category.find_by(name: params[:category]).id
-      @products = Product.where(:category_id => @category_id) 
+      @products = Product.where(:category_id => @category_id)
     end
   end
 
@@ -32,15 +28,21 @@ class ProductsController < ApplicationController
 
   def search
      if @query_string.present? && !@query_string.blank?
-       search_result = Product.ransack(@search_criteria).result(:distinct => true)
-       @products = search_result.paginate(:page => params[:page], :per_page => 5 )
+        search_result = Product.ransack(@search_criteria).result(:distinct => true)
+        @products = search_result.paginate(:page => params[:page], :per_page => 5 )
        if @products.blank?
-         redirect_to root_path, alert: "没有找到相关工作信息！"
+           redirect_to products_path, alert: "没有找到您要的商品！"
        end
      else
-       redirect_to root_path, notice: "搜索信息不能为空，请输入关键字搜索！"
+       redirect_to products_path, notice: "搜索信息不能为空，请输入关键字搜索！"
      end
   end
+
+  def upvote
+    @product = Product.find(params[:id])
+    @product.upvote_by current_user
+    redirect_to :back
+  end  
 
 
   protected

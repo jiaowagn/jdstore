@@ -49,6 +49,7 @@ gem 'ransack'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 gem 'seo_helper'
+gem 'acts_as_votable', '~> 0.10.0'
 
 
 

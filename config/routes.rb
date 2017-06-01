@@ -25,6 +25,11 @@ Rails.application.routes.draw do
     collection do
       get :search
     end
+
+    member do
+     put "like", to: "products#upvote"
+    end
+
   end
 
   resources :carts do

@@ -9,8 +9,9 @@
               <div class="productDetail">
                 <div class="productDetail-left">
                   <div class="productDetail-left-bigImage">
-                    <%= image_tag(@product.photos[0].avatar.thumb.url) %>
-                    
+
+                    <img id="zoom_01" src=<%= @product.photos[0].avatar.thumb.url %> data-zoom-image=<%= @product.photos[0].avatar.url %>>
+
                   </div>
                   <!-- 下方小图-->
                   <div class="productDetail-left-imageList ">
@@ -30,12 +31,6 @@
                 </div>
               </div>
           </div>
-
-
-
-
-
-
 
 
 
@@ -61,8 +56,6 @@
     </div>
   </div>
 </div>
-
-
 
 <div class="container-fluid" id="review">
   <div class="row">
@@ -90,3 +83,8 @@
     </div>
   </div>
 </div>
+
+<!-- 放大镜 -->
+<script>
+$('#zoom_01').elevateZoom();
+</script>

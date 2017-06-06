@@ -31,8 +31,11 @@
             <%= f.input :price %>
           </div>
 
+
           <div class="group">
-            <%= f.input :image, as: :file %>
+            <%#= f.input :image, as: :file %>
+            <%= f.label :avatar %><br>
+            <%= f.file_field :avatar, :multiple => true, name: "photos[avatar][]" %>
           </div>
 
           <%= f.submit t("admin.create_product"), data: {disable_with: "Submiting..."}, class: "btn btn-primary"%>

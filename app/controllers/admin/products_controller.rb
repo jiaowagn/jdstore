@@ -9,6 +9,7 @@ class Admin::ProductsController < ApplicationController
   def new
     @product = Product.new
     @categories = Category.all.map { |c| [c.name, c.id] }
+    @photo = @product.photos.build
   end
 
   def show
@@ -28,13 +29,30 @@ class Admin::ProductsController < ApplicationController
     else
       render :new
     end
+
+   if params[:photos] != nil
+     params[:photos]['avatar'].each do |a|
+       @photo = @product.photos.create(:avatar => a)
+     end
+   end
+
   end
 
   def update
     @product = Product.find(params[:id])
     @product.category_id = params[:category_id]
-    if @product.update(product_params)
+
+    if params[:photos] != nil
+      @product.photos.destroy_all #need to destroy old pics first
+
+      params[:photos]['avatar'].each do |a|
+        @picture = @product.photos.create(:avatar => a)
+      end
+
+      @product.update(product_params)
       redirect_to admin_products_path, notice: "Update Success"
+    elsif @product.update(product_params)
+
     else
       render :edit
     end

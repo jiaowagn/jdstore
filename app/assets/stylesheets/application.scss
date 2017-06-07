@@ -338,12 +338,12 @@ body {
   overflow: hidden;
   text-align: center;
   z-index: 99999999;
-  background-color: #777777;
+  background-color: #E0E0E0;
   color: #eeeeee;
   width: 50px;
   height: 48px;
   line-height: 48px;
-  right: 30px;
+  right: 100px;
   bottom: 30px;
   padding-top: 2px;
   border-top-left-radius: 10px;
@@ -358,7 +358,7 @@ body {
 }
 
 .scroll-top-wrapper:hover {
-  background-color: #888888;
+  background-color: #E0E0E0;
 }
 
 .scroll-top-wrapper.show {

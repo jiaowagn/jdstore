@@ -47,6 +47,7 @@ gem 'devise-i18n'
 gem 'select2-rails'
 gem 'rucaptcha'
 gem 'dalli'
+gem 'intercom-rails'
 
 gem 'ransack'
 gem 'will_paginate'
